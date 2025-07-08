@@ -1,3 +1,4 @@
+import 'package:event_management_app/Screen/page/event_page.dart';
 import 'package:event_management_app/Screen/page/sign_in_page.dart';
 import 'package:event_management_app/firebase_options.dart';
 import 'package:event_management_app/Screen/page/home_page.dart';
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
         '/home': (context) => const HomePage(),
         '/signup': (context) => const SignUpPage(),
         '/signin': (context) => const SignInPage(),
+        '/event': (context) => const EventPage(),
       },
     );
   }

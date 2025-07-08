@@ -12,7 +12,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   String email = "";
-  
+
   @override
   void initState() {
     super.initState();
@@ -37,8 +37,8 @@ class _HomePageState extends State<HomePage> {
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
-          children: const <Widget>[
-            DrawerHeader(
+          children: <Widget>[
+            const DrawerHeader(
               decoration: BoxDecoration(
                 color: Colors.grey,
               ),
@@ -49,6 +49,12 @@ class _HomePageState extends State<HomePage> {
                   fontSize: 24,
                 ),
               ),
+            ),
+            ListTile(
+              title: const Text('Event'),
+              onTap: () {
+                Navigator.pushNamed(context, '/event');
+              },
             ),
 
           ],
@@ -65,7 +71,7 @@ class _HomePageState extends State<HomePage> {
                   style: const TextStyle(
                     fontSize: 14,
                   ),
-                ), 
+                ),
                 const Spacer(),
                 ButtonWidget(
                   title: "Sign Out",
