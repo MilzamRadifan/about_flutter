@@ -2,12 +2,11 @@ import 'package:event_management_app/Screen/widget/button_widget.dart';
 import 'package:event_management_app/Screen/widget/field_form_widget.dart';
 import 'package:event_management_app/Service/auth_service.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 class SignUpPage extends StatelessWidget {
   const SignUpPage({super.key});
 
-  @override
+  @override 
   Widget build(BuildContext context) {
     TextEditingController emailController = TextEditingController();
     TextEditingController passwordController = TextEditingController();

@@ -1,9 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class Authservice {
-  
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+
   //* Sign up
   Future<void> signUp({
     required String email,
@@ -11,7 +13,7 @@ class Authservice {
     required BuildContext context,
   }) async {
     try {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      await _firebaseAuth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
@@ -19,7 +21,6 @@ class Authservice {
       // jika berhasil,navigasi ke sign in page
       await Future.delayed(const Duration(seconds: 2));
       Navigator.pushReplacementNamed(context, '/signin');
-
     } on FirebaseException catch (e) {
       String message = "";
       if (e.code == 'email-already-in-use') {
@@ -47,12 +48,12 @@ class Authservice {
 
   //* Sign in
   Future<void> signIn({
-    required String email, 
+    required String email,
     required String password,
     required BuildContext context,
   }) async {
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
+      await _firebaseAuth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
@@ -60,7 +61,6 @@ class Authservice {
       // jika berhasil, navigasi ke home page
       await Future.delayed(const Duration(seconds: 2));
       Navigator.pushReplacementNamed(context, '/home');
-
     } on FirebaseException catch (e) {
       String message = "";
       if (e.code == 'user-not-found') {
@@ -91,9 +91,32 @@ class Authservice {
     required BuildContext context,
   }) async {
     try {
-      await FirebaseAuth.instance.signOut();
+      await _firebaseAuth.signOut();
       await Future.delayed(const Duration(seconds: 2));
       Navigator.pushReplacementNamed(context, '/signin');
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  //* Google Sign in
+  Future<void> googleSignIn({
+    required BuildContext context,
+  }) async {
+    try {
+      final GoogleSignInAccount? gUser = await GoogleSignIn().signIn();
+      final GoogleSignInAuthentication gAuth = await gUser!.authentication;
+
+      if (gUser == null) {return;}
+
+      final credential = GoogleAuthProvider.credential(
+        accessToken: gAuth.accessToken,
+        idToken: gAuth.idToken,
+      );
+
+      await _firebaseAuth.signInWithCredential(credential);
+
+      Navigator.pushReplacementNamed(context, '/home');
     } catch (e) {
       print(e);
     }

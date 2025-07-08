@@ -93,6 +93,34 @@ class SignInPage extends StatelessWidget {
                       },
                     ),
 
+                    const SizedBox(height: 20),
+
+                    // google sign
+                    Container(
+                      width: 50,
+                      height: 50,
+                      margin: const EdgeInsets.symmetric(horizontal: 20),
+                      child: ElevatedButton(
+                        onPressed: () async {
+                          await Authservice().googleSignIn(context: context);
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.white,
+                          foregroundColor: Colors.black87,
+                          elevation: 2,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                            side: BorderSide(color: Colors.grey.shade300),
+                          ),
+                          padding: EdgeInsets.zero,
+                        ),
+                        child: Image.asset(
+                          'lib/core/assets/ic_google.png',
+                          height: 25,
+                          width: 25,
+                        ),
+                      ),
+                    ),
 
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
