@@ -57,9 +57,15 @@ class _HomePageState extends State<HomePage> {
               },
             ),
             ListTile(
-              title: const Text('Notification'),
+              title: const Text('Remote Notification'),
               onTap: () {
-                Navigator.pushNamed(context, '/notification');
+                Navigator.pushNamed(context, '/remote-notification');
+              },
+            ),
+            ListTile(
+              title: const Text('local Notification'),
+              onTap: () {
+                Navigator.pushNamed(context, '/local-notification');
               },
             ),
 

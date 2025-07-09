@@ -1,7 +1,7 @@
 import 'package:event_management_app/main.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
-class NotifService {
+class RemoteNotificationService {
   final _firebaseMessaging = FirebaseMessaging.instance;
 
   Future<void> init() async {
@@ -17,7 +17,7 @@ class NotifService {
   void handleNotification(RemoteMessage? message) {
     if (message == null) return;
 
-    navigatorKey.currentState?.pushNamed('/notification', arguments: message);
+    navigatorKey.currentState?.pushNamed('/remote-notification', arguments: message);
   }
 
   Future initPushNotification() async {

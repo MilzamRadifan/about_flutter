@@ -1,7 +1,9 @@
 import 'package:event_management_app/Screen/page/event_page.dart';
-import 'package:event_management_app/Screen/page/notification_page.dart';
+import 'package:event_management_app/Screen/page/local_notification_page.dart';
+import 'package:event_management_app/Screen/page/remote_notification_page.dart';
 import 'package:event_management_app/Screen/page/sign_in_page.dart';
-import 'package:event_management_app/Service/notif_service.dart';
+import 'package:event_management_app/Service/local_notification_service.dart';
+import 'package:event_management_app/Service/remote_notification_service.dart';
 import 'package:event_management_app/firebase_options.dart';
 import 'package:event_management_app/Screen/page/home_page.dart';
 import 'package:event_management_app/Screen/page/sign_up_page.dart';
@@ -15,7 +17,9 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform
   );
-  await NotifService().init(); // Comment sementara
+  await RemoteNotificationService().init();
+
+  await LocalNotificationService().initNotification();
   runApp(const MyApp());
 }
 
@@ -38,7 +42,8 @@ class MyApp extends StatelessWidget {
         '/signup': (context) => const SignUpPage(),
         '/signin': (context) => const SignInPage(),
         '/event': (context) => const EventPage(),
-        '/notification': (context) => const NotificationPage(),
+        '/remote-notification': (context) => const RemoteNotificationPage(),
+        '/local-notification': (context) => const LocalNotificationPage(),
       },
     );
   }

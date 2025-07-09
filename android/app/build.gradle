@@ -10,7 +10,7 @@ plugins {
 
 android {
     namespace = "com.example.event_management_app"
-    compileSdk = flutter.compileSdkVersion
+    compileSdk = 35 //flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
     compileOptions {

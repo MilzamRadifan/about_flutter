@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
-class NotificationPage extends StatelessWidget {
-  const NotificationPage({super.key});
+class RemoteNotificationPage extends StatelessWidget {
+  const RemoteNotificationPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // Ambil data notification dari arguments
     final RemoteMessage? message = ModalRoute.of(context)?.settings.arguments as RemoteMessage?;
     
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Notification'),
-        backgroundColor: Colors.blue,
-        foregroundColor: Colors.white,
+        title: const Text('Remote Notification'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
