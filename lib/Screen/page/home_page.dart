@@ -56,6 +56,12 @@ class _HomePageState extends State<HomePage> {
                 Navigator.pushNamed(context, '/event');
               },
             ),
+            ListTile(
+              title: const Text('Notification'),
+              onTap: () {
+                Navigator.pushNamed(context, '/notification');
+              },
+            ),
 
           ],
         ),
